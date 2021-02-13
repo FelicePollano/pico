@@ -12,6 +12,8 @@ class UnitTest
 
     private:
         void fen_load_1();
+        void fen_load_2();
+        void fen_load_3();
         void check_empty();
 };
 

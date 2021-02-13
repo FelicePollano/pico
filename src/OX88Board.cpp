@@ -87,7 +87,7 @@ void OX88Board::LoadFen(std::string fen)
                     error = true;
                 if(!error)
                 {
-                    rank = *i-0x30;
+                    rank = *i-0x31;
                     if(rank<0 || rank > 7)
                         error = true;
                     else
