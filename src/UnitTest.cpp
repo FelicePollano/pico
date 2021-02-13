@@ -19,19 +19,15 @@ void UnitTest::Run()
 {
     auto start = std::chrono::steady_clock::now();
 
-
-
     check_empty();
     fen_load_1();
     fen_load_2();
     fen_load_3();
 
-
     auto end = std::chrono::steady_clock::now();
 
     std::cout<<"test done. " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
     std::cout<<" ms.\n";
-
 }
 void UnitTest::fen_load_1()
 {
