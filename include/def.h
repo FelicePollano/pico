@@ -5,8 +5,14 @@
 
 #define OX88 int16_t
 #define CELL_CONTENT int16_t
+#define FLAGS int8_t
 
 #define EMPTY 0
+#define W_CAN_CASTLE_SHORT 1
+#define W_CAN_CASTLE_LONG 2
+#define B_CAN_CASTLE_SHORT 4
+#define B_CAN_CASTLE_LONG 8
+
 
 // bitwise supporting constants
 #define WHITE   0x1

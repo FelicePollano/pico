@@ -11,6 +11,8 @@ class OX88Board
         virtual ~OX88Board();
         void LoadFen(std::string fen);
         CELL_CONTENT At(OX88 where);
+        void Clear();
+
     protected:
 
     private:
@@ -29,6 +31,11 @@ class OX88Board
         std::vector<OX88> b_queens;
         OX88 w_king;
         OX88 b_king;
+        FLAGS castling_ability;
+        FLAGS tomove;
+        OX88 ep_square;
+        int half_move_clock;
+        int full_move_count;
 };
 
 #endif // OX88BOARD_H
