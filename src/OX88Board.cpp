@@ -142,43 +142,56 @@ void OX88Board::LoadFen(std::string fen)
             }
             else
             {
+                OX88 p = TO_OX88(rank,file);
                 switch(*i)
                 {
                 case 'p':
-                    board[TO_OX88(rank,file)]=(BLACK|PAWN);
+                    board[p]=(BLACK|PAWN);
+                    b_pawns.push_back(p);
                     break;
                 case 'P':
-                    board[TO_OX88(rank,file)]=(WHITE|PAWN);
+                    board[p]=(WHITE|PAWN);
+                    w_pawns.push_back(p);
                     break;
                 case 'n':
-                    board[TO_OX88(rank,file)]=(BLACK|KNIGHT);
+                    board[p]=(BLACK|KNIGHT);
+                    b_knights.push_back(p);
                     break;
                 case 'N':
-                    board[TO_OX88(rank,file)]=(WHITE|KNIGHT);
+                    board[p]=(WHITE|KNIGHT);
+                    w_knights.push_back(p);
                     break;
                 case 'b':
-                    board[TO_OX88(rank,file)]=(BLACK|BISHOP);
+                    board[p]=(BLACK|BISHOP);
+                    b_bishops.push_back(p);
                     break;
                 case 'B':
-                    board[TO_OX88(rank,file)]=(WHITE|BISHOP);
+                    board[p]=(WHITE|BISHOP);
+                    w_bishops.push_back(p);
                     break;
                 case 'r':
-                    board[TO_OX88(rank,file)]=(BLACK|ROOK);
+                    board[p]=(BLACK|ROOK);
+                    b_rooks.push_back(p);
                     break;
                 case 'R':
-                    board[TO_OX88(rank,file)]=(WHITE|ROOK);
+                    board[p]=(WHITE|ROOK);
+                    w_rooks.push_back(p);
                     break;
                 case 'q':
-                    board[TO_OX88(rank,file)]=(BLACK|PAWN);
+                    board[p]=(BLACK|PAWN);
+                    b_queens.push_back(p);
                     break;
                 case 'Q':
-                    board[TO_OX88(rank,file)]=(WHITE|QUEEN);
+                    board[p]=(WHITE|QUEEN);
+                    w_queens.push_back(p);
                     break;
                 case 'k':
-                    board[TO_OX88(rank,file)]=(BLACK|KING);
+                    board[p]=(BLACK|KING);
+                    b_king=p;
                     break;
                 case 'K':
-                    board[TO_OX88(rank,file)]=(WHITE|KING);
+                    board[p]=(WHITE|KING);
+                    w_king=p;
                     break;
                 default:
                     throw "Invalid fen: piece positioning not valid";
@@ -191,7 +204,7 @@ void OX88Board::LoadFen(std::string fen)
         throw "Invalid fen: part missing.";
     if(full_move_count<=0)
         throw "Invalid fen: full move count not valid.";
-     if(half_move_clock==0)
+     if(half_move_clock<0)
         throw "Invalid fen: half move clock not valid.";
 }
 CELL_CONTENT OX88Board::At(OX88 where)
