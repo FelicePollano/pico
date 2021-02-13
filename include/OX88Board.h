@@ -3,17 +3,20 @@
 
 #include "def.h"
 #include <vector>
-
+#include <string>
 class OX88Board
 {
     public:
         OX88Board();
         virtual ~OX88Board();
-
+        void LoadFen(std::string fen);
+        CELL_CONTENT At(OX88 where);
     protected:
 
     private:
-
+        //board array
+        CELL_CONTENT board[128];
+        //pieces locations
         std::vector<OX88> w_pawns;
         std::vector<OX88> b_pawns;
         std::vector<OX88> w_knights;

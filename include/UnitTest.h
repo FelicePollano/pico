@@ -7,11 +7,12 @@ class UnitTest
     public:
         UnitTest();
         virtual ~UnitTest();
-        Run();
+        void Run();
     protected:
 
     private:
         void fen_load_1();
+        void check_empty();
 };
 
 #endif // UNITTEST_H

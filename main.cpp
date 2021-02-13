@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "UnitTest.h"
 using namespace std;
 
 int main()
@@ -11,6 +11,11 @@ int main()
         if(arg=="quit")
         {
             break;
+        }
+        else if(arg=="test")
+        {
+            UnitTest ut;
+            ut.Run();
         }
         else
         {

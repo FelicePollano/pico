@@ -4,7 +4,9 @@
 #include <inttypes.h>
 
 #define OX88 int16_t
-#define CELL_T int16_t
+#define CELL_CONTENT int16_t
+
+#define EMPTY 0
 
 // bitwise supporting constants
 #define WHITE   0x1
@@ -88,6 +90,6 @@
 #define H7  0x67
 #define H8  0x77
 
-
+#define TO_OX88(r,f)  16 * ((r)) + ((f))
 
 #endif // DEF_H_INCLUDED
