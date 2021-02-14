@@ -16,6 +16,7 @@ class OX88Board
         OX88 IndexAt(OX88 where);
         FLAGS ToMove(){ return tomove;}
         void Clear();
+        std::string CellName(OX88 square);
         OX88 WhiteKing(){ return w_king; }
         OX88 EpSquare(){ return ep_square; }
         OX88 BlackKing(){ return b_king; }

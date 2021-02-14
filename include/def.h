@@ -14,9 +14,13 @@
    PART IS THE UPPER BYTE AND REVERSE INDEX THE LOWER
 */
 
-#define PART(x) ((x))&0xFF
-#define INDEX(x) ((x))>>8
-#define TO_INDEX(x) ((x))<<8
+#define PART(x) (((x))&0xFF)
+#define INDEX(x) (((x))>>8)
+#define TO_INDEX(x) (((x))<<8)
+
+
+#define FILE_OF(x) (((x))&7)
+#define RANK_OF(x) (((x))>>4)
 
 
 

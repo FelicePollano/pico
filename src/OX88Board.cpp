@@ -23,6 +23,18 @@ OX88Board::~OX88Board()
 }
 
 /*
+     Returns the algebraic name of a square by its 0x88 index.
+*/
+std::string OX88Board::CellName(OX88 square)
+{
+    char tmp[3];
+    // 97 is lowercase a
+    sprintf(tmp,"%c%d",(char)(97+FILE_OF(square)),RANK_OF(square)+1);
+    return std::string(tmp);
+}
+
+
+/*
     Obtain the FEN string representing current board.
     FEN (Forsyth–Edwards Notation)  string is defined (for instance ) here: https://www.chessprogramming.org/Forsyth-Edwards_Notation
 */
@@ -115,7 +127,10 @@ std::string OX88Board::Fen()
     }
     stream<<" ";
     // --en passant square
-    stream <<"-";
+    if(ep_square == 0)
+        stream <<"-";
+    else
+        stream<<CellName(ep_square);
     stream<<" ";
     // --half move clock
     stream<<half_move_clock;
