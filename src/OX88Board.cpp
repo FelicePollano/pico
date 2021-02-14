@@ -21,7 +21,10 @@ OX88Board::~OX88Board()
     //dtor
 }
 
-
+/*
+    Initialize the board starting from a FEN string.
+    FEN (Forsyth–Edwards Notation)  string defined (for instance ) here: https://www.chessprogramming.org/Forsyth-Edwards_Notation
+*/
 
 void OX88Board::LoadFen(std::string fen)
 {
@@ -148,42 +151,52 @@ void OX88Board::LoadFen(std::string fen)
                 case 'p':
                     board[p]=(BLACK|PAWN);
                     b_pawns.push_back(p);
+                    board[p]|=TO_INDEX(b_pawns.size()-1);
                     break;
                 case 'P':
                     board[p]=(WHITE|PAWN);
                     w_pawns.push_back(p);
+                    board[p]|=TO_INDEX(w_pawns.size()-1);
                     break;
                 case 'n':
                     board[p]=(BLACK|KNIGHT);
                     b_knights.push_back(p);
+                    board[p]|=TO_INDEX(b_knights.size()-1);
                     break;
                 case 'N':
                     board[p]=(WHITE|KNIGHT);
                     w_knights.push_back(p);
+                    board[p]|=TO_INDEX(w_knights.size()-1);
                     break;
                 case 'b':
                     board[p]=(BLACK|BISHOP);
                     b_bishops.push_back(p);
+                    board[p]|=TO_INDEX(b_bishops.size()-1);
                     break;
                 case 'B':
                     board[p]=(WHITE|BISHOP);
                     w_bishops.push_back(p);
+                    board[p]|=TO_INDEX(w_bishops.size()-1);
                     break;
                 case 'r':
                     board[p]=(BLACK|ROOK);
                     b_rooks.push_back(p);
+                    board[p]|=TO_INDEX(b_rooks.size()-1);
                     break;
                 case 'R':
                     board[p]=(WHITE|ROOK);
                     w_rooks.push_back(p);
+                    board[p]|=TO_INDEX(w_rooks.size()-1);
                     break;
                 case 'q':
                     board[p]=(BLACK|PAWN);
                     b_queens.push_back(p);
+                    board[p]|=TO_INDEX(b_queens.size()-1);
                     break;
                 case 'Q':
                     board[p]=(WHITE|QUEEN);
                     w_queens.push_back(p);
+                    board[p]|=TO_INDEX(w_queens.size()-1);
                     break;
                 case 'k':
                     board[p]=(BLACK|KING);
@@ -207,7 +220,51 @@ void OX88Board::LoadFen(std::string fen)
      if(half_move_clock<0)
         throw "Invalid fen: half move clock not valid.";
 }
-CELL_CONTENT OX88Board::At(OX88 where)
+
+/*
+    Returns the piece at a location
+*/
+FLAGS OX88Board::At(OX88 where)
 {
-    return board[where];
+    return PART(board[where]);
+}
+
+/*
+    Returns the reverse index of piece at a location
+*/
+FLAGS OX88Board::IndexAt(OX88 where)
+{
+    return INDEX(board[where]);
+}
+
+/*
+    Check if reverse indexing is consistent and
+    the chessboard data are all consistent. Useful in unit testing
+*/
+bool OX88Board::SanityCheck()
+{
+    int w_pawn_count=0;
+
+    for(int rank=0;rank<=7;++rank)
+        for(int file=0;file<=7;++file)
+    {
+        auto part = At(TO_OX88(rank,file));
+        switch(part)
+        {
+        case WHITE|PAWN:
+            w_pawn_count++;
+            auto rindex = IndexAt(TO_OX88(rank,file));
+            if(w_pawns[rindex]!=TO_OX88(rank,file))
+            {
+                fprintf(stderr,"inconsistency found at rank:%d file:%d - %d\n",rank,file,part);
+                return false;
+            }
+            break;
+        }
+    }
+    if(w_pawn_count!=w_pawns.size())
+    {
+        fprintf(stderr,"inconsistency: pawn found on board %d, pawn stored count %d\n",w_pawn_count,w_pawns.size());
+        return false;
+    }
 }

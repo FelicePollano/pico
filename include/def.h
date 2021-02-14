@@ -3,9 +3,22 @@
 
 #include <inttypes.h>
 
-#define OX88 int16_t
+#define OX88 int8_t
 #define CELL_CONTENT int16_t
 #define FLAGS int8_t
+
+
+/*
+   MACROS TO HANDLE CELL CONTENT EXTRACTING PIECE AND REVERSE INDEX
+   IE THE INDEX ON THE CORRESPONDING PART ARRAY.
+   PART IS THE UPPER BYTE AND REVERSE INDEX THE LOWER
+*/
+
+#define PART(x) ((x))&0xFF
+#define INDEX(x) ((x))>>8
+#define TO_INDEX(x) ((x))<<8
+
+
 
 #define EMPTY 0
 #define W_CAN_CASTLE_SHORT 1

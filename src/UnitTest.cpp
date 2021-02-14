@@ -34,6 +34,8 @@ void UnitTest::fen_load_1()
     OX88Board board;
     board.LoadFen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
+    assert(board.SanityCheck());
+
     assert(board.At(A1)==WHITE|ROOK);
     assert(board.At(B1)==WHITE|KNIGHT);
     assert(board.At(C1)==WHITE|BISHOP);
@@ -181,6 +183,8 @@ void UnitTest::fen_load_2()
     OX88Board board;
     board.LoadFen("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1");
 
+    assert(board.SanityCheck());
+
     assert(board.At(A1)==WHITE|ROOK);
     assert(board.At(B1)==WHITE|KNIGHT);
     assert(board.At(C1)==WHITE|BISHOP);
@@ -326,6 +330,8 @@ void UnitTest::fen_load_3()
 {
     OX88Board board;
     board.LoadFen("rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2");
+
+    assert(board.SanityCheck());
 
     assert(board.At(A1)==WHITE|ROOK);
     assert(board.At(B1)==WHITE|KNIGHT);
