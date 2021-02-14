@@ -1,4 +1,5 @@
 #include <iostream>
+#include "OX88Board.h"
 #include "UnitTest.h"
 using namespace std;
 
@@ -19,7 +20,7 @@ int main()
         }
         else
         {
-            std:cout<<"unknown command:"<<arg<<"\n";
+            std::cout<<"unknown command:"<<arg<<"\n";
         }
 
     }while(1);

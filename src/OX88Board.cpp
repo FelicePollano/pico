@@ -146,6 +146,8 @@ void OX88Board::LoadFen(std::string fen)
             else
             {
                 OX88 p = TO_OX88(rank,file);
+                if(p&0x88)
+                    throw "Invalid fen: cell location invalid.";
                 switch(*i)
                 {
                 case 'p':
@@ -189,7 +191,7 @@ void OX88Board::LoadFen(std::string fen)
                     board[p]|=TO_INDEX(w_rooks.size()-1);
                     break;
                 case 'q':
-                    board[p]=(BLACK|PAWN);
+                    board[p]=(BLACK|QUEEN);
                     b_queens.push_back(p);
                     board[p]|=TO_INDEX(b_queens.size()-1);
                     break;
@@ -232,7 +234,7 @@ FLAGS OX88Board::At(OX88 where)
 /*
     Returns the reverse index of piece at a location
 */
-FLAGS OX88Board::IndexAt(OX88 where)
+OX88 OX88Board::IndexAt(OX88 where)
 {
     return INDEX(board[where]);
 }
@@ -243,28 +245,182 @@ FLAGS OX88Board::IndexAt(OX88 where)
 */
 bool OX88Board::SanityCheck()
 {
-    int w_pawn_count=0;
+    int w_pawns_count=0;
+    int b_pawns_count=0;
+    int w_knights_count=0;
+    int b_knights_count=0;
+    int w_bishops_count=0;
+    int b_bishops_count=0;
+    int w_rooks_count=0;
+    int b_rooks_count=0;
+    int w_queens_count=0;
+    int b_queens_count=0;
 
-    for(int rank=0;rank<=7;++rank)
-        for(int file=0;file<=7;++file)
+    for(int rank=0;rank<8;rank++)
     {
-        auto part = At(TO_OX88(rank,file));
-        switch(part)
+        for(int file=0;file<8;file++)
         {
-        case WHITE|PAWN:
-            w_pawn_count++;
-            auto rindex = IndexAt(TO_OX88(rank,file));
-            if(w_pawns[rindex]!=TO_OX88(rank,file))
+            auto part = At(TO_OX88(rank,file));
+            OX88 rindex;
+            switch(part)
             {
-                fprintf(stderr,"inconsistency found at rank:%d file:%d - %d\n",rank,file,part);
-                return false;
+            case WHITE|PAWN:
+                w_pawns_count++;
+                rindex = IndexAt(TO_OX88(rank,file));
+
+                if(w_pawns[rindex]!=TO_OX88(rank,file))
+                {
+                    fprintf(stderr,"inconsistency found at rank:%d file:%d - %d\n",rank,file,part);
+                    return false;
+                }
+                break;
+            case BLACK|PAWN:
+                b_pawns_count++;
+                rindex = IndexAt(TO_OX88(rank,file));
+
+                if(b_pawns[rindex]!=TO_OX88(rank,file))
+                {
+                    fprintf(stderr,"inconsistency found at rank:%d file:%d - %d\n",rank,file,part);
+                    return false;
+                }
+                break;
+
+            case WHITE|KNIGHT:
+                w_knights_count++;
+                rindex = IndexAt(TO_OX88(rank,file));
+
+                if(w_knights[rindex]!=TO_OX88(rank,file))
+                {
+                    fprintf(stderr,"inconsistency found at rank:%d file:%d - %d\n",rank,file,part);
+                    return false;
+                }
+                break;
+            case BLACK|KNIGHT:
+                b_knights_count++;
+                rindex = IndexAt(TO_OX88(rank,file));
+
+                if(b_knights[rindex]!=TO_OX88(rank,file))
+                {
+                    fprintf(stderr,"inconsistency found at rank:%d file:%d - %d\n",rank,file,part);
+                    return false;
+                }
+                break;
+            case WHITE|BISHOP:
+                w_bishops_count++;
+                rindex = IndexAt(TO_OX88(rank,file));
+
+                if(w_bishops[rindex]!=TO_OX88(rank,file))
+                {
+                    fprintf(stderr,"inconsistency found at rank:%d file:%d - %d\n",rank,file,part);
+                    return false;
+                }
+                break;
+            case BLACK|BISHOP:
+                b_bishops_count++;
+                rindex = IndexAt(TO_OX88(rank,file));
+
+                if(b_bishops[rindex]!=TO_OX88(rank,file))
+                {
+                    fprintf(stderr,"inconsistency found at rank:%d file:%d - %d\n",rank,file,part);
+                    return false;
+                }
+                break;
+             case WHITE|ROOK:
+                w_rooks_count++;
+                rindex = IndexAt(TO_OX88(rank,file));
+
+                if(w_rooks[rindex]!=TO_OX88(rank,file))
+                {
+                    fprintf(stderr,"inconsistency found at rank:%d file:%d - %d\n",rank,file,part);
+                    return false;
+                }
+                break;
+            case BLACK|ROOK:
+                b_rooks_count++;
+                rindex = IndexAt(TO_OX88(rank,file));
+
+                if(b_rooks[rindex]!=TO_OX88(rank,file))
+                {
+                    fprintf(stderr,"inconsistency found at rank:%d file:%d - %d\n",rank,file,part);
+                    return false;
+                }
+                break;
+             case WHITE|QUEEN:
+                w_queens_count++;
+                rindex = IndexAt(TO_OX88(rank,file));
+
+                if(w_queens[rindex]!=TO_OX88(rank,file))
+                {
+                    fprintf(stderr,"inconsistency found at rank:%d file:%d - %d\n",rank,file,part);
+                    return false;
+                }
+                break;
+            case BLACK|QUEEN:
+                b_queens_count++;
+                rindex = IndexAt(TO_OX88(rank,file));
+
+                if(b_queens[rindex]!=TO_OX88(rank,file))
+                {
+                    fprintf(stderr,"inconsistency found at rank:%d file:%d - %d\n",rank,file,part);
+                    return false;
+                }
+                break;
+
             }
-            break;
         }
     }
-    if(w_pawn_count!=w_pawns.size())
+
+    if(w_pawns_count!=w_pawns.size())
     {
-        fprintf(stderr,"inconsistency: pawn found on board %d, pawn stored count %d\n",w_pawn_count,w_pawns.size());
+        fprintf(stderr,"inconsistency: pawns found on board %d, pawns stored count %d\n",w_pawns_count,w_pawns.size());
         return false;
     }
+    if(b_pawns_count!=b_pawns.size())
+    {
+        fprintf(stderr,"inconsistency: pawns found on board %d, pawns stored count %d\n",b_pawns_count,b_pawns.size());
+        return false;
+    }
+    if(w_bishops_count!=w_bishops.size())
+    {
+        fprintf(stderr,"inconsistency: bishop found on board %d, bishops stored count %d\n",w_bishops_count,w_bishops.size());
+        return false;
+    }
+    if(b_bishops_count!=b_bishops.size())
+    {
+        fprintf(stderr,"inconsistency: bishop found on board %d, bishops stored count %d\n",b_bishops_count,b_bishops.size());
+        return false;
+    }
+    if(w_knights_count!=w_knights.size())
+    {
+        fprintf(stderr,"inconsistency: knights found on board %d, knights stored count %d\n",w_knights_count,w_knights.size());
+        return false;
+    }
+    if(b_knights_count!=b_knights.size())
+    {
+        fprintf(stderr,"inconsistency: bishop found on board %d, bishops stored count %d\n",b_knights_count,b_knights.size());
+        return false;
+    }
+    if(w_rooks_count!=w_rooks.size())
+    {
+        fprintf(stderr,"inconsistency: rooks found on board %d, rooks stored count %d\n",w_rooks_count,w_rooks.size());
+        return false;
+    }
+    if(b_rooks_count!=b_rooks.size())
+    {
+        fprintf(stderr,"inconsistency: rooks found on board %d, rooks stored count %d\n",b_rooks_count,b_rooks.size());
+        return false;
+    }
+    if(w_queens_count!=w_queens.size())
+    {
+        fprintf(stderr,"inconsistency: queens found on board %d, rooks stored count %d\n",w_queens_count,w_queens.size());
+        return false;
+    }
+    if(b_queens_count!=b_queens.size())
+    {
+        fprintf(stderr,"inconsistency: queens found on board %d, rooks stored count %d\n",b_queens_count,b_queens.size());
+        return false;
+    }
+
+
+    return true;
 }

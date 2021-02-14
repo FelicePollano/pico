@@ -36,22 +36,22 @@ void UnitTest::fen_load_1()
 
     assert(board.SanityCheck());
 
-    assert(board.At(A1)==WHITE|ROOK);
-    assert(board.At(B1)==WHITE|KNIGHT);
-    assert(board.At(C1)==WHITE|BISHOP);
-    assert(board.At(D1)==WHITE|QUEEN);
-    assert(board.At(E1)==WHITE|KING);
-    assert(board.At(F1)==WHITE|BISHOP);
-    assert(board.At(G1)==WHITE|KNIGHT);
-    assert(board.At(H1)==WHITE|ROOK);
-    assert(board.At(A2)==WHITE|ROOK);
-    assert(board.At(B2)==WHITE|PAWN);
-    assert(board.At(C2)==WHITE|PAWN);
-    assert(board.At(D2)==WHITE|PAWN);
-    assert(board.At(E2)==WHITE|PAWN);
-    assert(board.At(F2)==WHITE|PAWN);
-    assert(board.At(G2)==WHITE|PAWN);
-    assert(board.At(H2)==WHITE|PAWN);
+    assert(board.At(A1)==(WHITE|ROOK));
+    assert(board.At(B1)==(WHITE|KNIGHT));
+    assert(board.At(C1)==(WHITE|BISHOP));
+    assert(board.At(D1)==(WHITE|QUEEN));
+    assert(board.At(E1)==(WHITE|KING));
+    assert(board.At(F1)==(WHITE|BISHOP));
+    assert(board.At(G1)==(WHITE|KNIGHT));
+    assert(board.At(H1)==(WHITE|ROOK));
+    assert(board.At(A2)==(WHITE|PAWN));
+    assert(board.At(B2)==(WHITE|PAWN));
+    assert(board.At(C2)==(WHITE|PAWN));
+    assert(board.At(D2)==(WHITE|PAWN));
+    assert(board.At(E2)==(WHITE|PAWN));
+    assert(board.At(F2)==(WHITE|PAWN));
+    assert(board.At(G2)==(WHITE|PAWN));
+    assert(board.At(H2)==(WHITE|PAWN));
 
     assert(board.At(A3)==EMPTY);
     assert(board.At(B3)==EMPTY);
@@ -89,22 +89,22 @@ void UnitTest::fen_load_1()
     assert(board.At(G6)==EMPTY);
     assert(board.At(H6)==EMPTY);
 
-    assert(board.At(A8)==BLACK|ROOK);
-    assert(board.At(B8)==BLACK|KNIGHT);
-    assert(board.At(C8)==BLACK|BISHOP);
-    assert(board.At(D8)==BLACK|QUEEN);
-    assert(board.At(E8)==BLACK|KING);
-    assert(board.At(F8)==BLACK|BISHOP);
-    assert(board.At(G8)==BLACK|KNIGHT);
-    assert(board.At(H8)==BLACK|ROOK);
-    assert(board.At(A7)==BLACK|ROOK);
-    assert(board.At(B7)==BLACK|PAWN);
-    assert(board.At(C7)==BLACK|PAWN);
-    assert(board.At(D7)==BLACK|PAWN);
-    assert(board.At(E7)==BLACK|PAWN);
-    assert(board.At(F7)==BLACK|PAWN);
-    assert(board.At(G7)==BLACK|PAWN);
-    assert(board.At(H7)==BLACK|PAWN);
+    assert(board.At(A8)==(BLACK|ROOK));
+    assert(board.At(B8)==(BLACK|KNIGHT));
+    assert(board.At(C8)==(BLACK|BISHOP));
+    assert(board.At(D8)==(BLACK|QUEEN));
+    assert(board.At(E8)==(BLACK|KING));
+    assert(board.At(F8)==(BLACK|BISHOP));
+    assert(board.At(G8)==(BLACK|KNIGHT));
+    assert(board.At(H8)==(BLACK|ROOK));
+    assert(board.At(A7)==(BLACK|PAWN));
+    assert(board.At(B7)==(BLACK|PAWN));
+    assert(board.At(C7)==(BLACK|PAWN));
+    assert(board.At(D7)==(BLACK|PAWN));
+    assert(board.At(E7)==(BLACK|PAWN));
+    assert(board.At(F7)==(BLACK|PAWN));
+    assert(board.At(G7)==(BLACK|PAWN));
+    assert(board.At(H7)==(BLACK|PAWN));
 
     int count;
 
@@ -185,22 +185,22 @@ void UnitTest::fen_load_2()
 
     assert(board.SanityCheck());
 
-    assert(board.At(A1)==WHITE|ROOK);
-    assert(board.At(B1)==WHITE|KNIGHT);
-    assert(board.At(C1)==WHITE|BISHOP);
-    assert(board.At(D1)==WHITE|QUEEN);
-    assert(board.At(E1)==WHITE|KING);
-    assert(board.At(F1)==WHITE|BISHOP);
-    assert(board.At(G1)==WHITE|KNIGHT);
-    assert(board.At(H1)==WHITE|ROOK);
-    assert(board.At(A2)==WHITE|ROOK);
-    assert(board.At(B2)==WHITE|PAWN);
-    assert(board.At(C2)==WHITE|PAWN);
-    assert(board.At(D2)==WHITE|PAWN);
+    assert(board.At(A1)==(WHITE|ROOK));
+    assert(board.At(B1)==(WHITE|KNIGHT));
+    assert(board.At(C1)==(WHITE|BISHOP));
+    assert(board.At(D1)==(WHITE|QUEEN));
+    assert(board.At(E1)==(WHITE|KING));
+    assert(board.At(F1)==(WHITE|BISHOP));
+    assert(board.At(G1)==(WHITE|KNIGHT));
+    assert(board.At(H1)==(WHITE|ROOK));
+    assert(board.At(A2)==(WHITE|PAWN));
+    assert(board.At(B2)==(WHITE|PAWN));
+    assert(board.At(C2)==(WHITE|PAWN));
+    assert(board.At(D2)==(WHITE|PAWN));
     assert(board.At(E2)==EMPTY);
-    assert(board.At(F2)==WHITE|PAWN);
-    assert(board.At(G2)==WHITE|PAWN);
-    assert(board.At(H2)==WHITE|PAWN);
+    assert(board.At(F2)==(WHITE|PAWN));
+    assert(board.At(G2)==(WHITE|PAWN));
+    assert(board.At(H2)==(WHITE|PAWN));
 
     assert(board.At(A3)==EMPTY);
     assert(board.At(B3)==EMPTY);
@@ -215,7 +215,7 @@ void UnitTest::fen_load_2()
     assert(board.At(B4)==EMPTY);
     assert(board.At(C4)==EMPTY);
     assert(board.At(D4)==EMPTY);
-    assert(board.At(E4)==WHITE|PAWN);
+    assert(board.At(E4)==(WHITE|PAWN));
     assert(board.At(F4)==EMPTY);
     assert(board.At(G4)==EMPTY);
     assert(board.At(H4)==EMPTY);
@@ -238,22 +238,22 @@ void UnitTest::fen_load_2()
     assert(board.At(G6)==EMPTY);
     assert(board.At(H6)==EMPTY);
 
-    assert(board.At(A8)==BLACK|ROOK);
-    assert(board.At(B8)==BLACK|KNIGHT);
-    assert(board.At(C8)==BLACK|BISHOP);
-    assert(board.At(D8)==BLACK|QUEEN);
-    assert(board.At(E8)==BLACK|KING);
-    assert(board.At(F8)==BLACK|BISHOP);
-    assert(board.At(G8)==BLACK|KNIGHT);
-    assert(board.At(H8)==BLACK|ROOK);
-    assert(board.At(A7)==BLACK|ROOK);
-    assert(board.At(B7)==BLACK|PAWN);
-    assert(board.At(C7)==BLACK|PAWN);
-    assert(board.At(D7)==BLACK|PAWN);
-    assert(board.At(E7)==BLACK|PAWN);
-    assert(board.At(F7)==BLACK|PAWN);
-    assert(board.At(G7)==BLACK|PAWN);
-    assert(board.At(H7)==BLACK|PAWN);
+    assert(board.At(A8)==(BLACK|ROOK));
+    assert(board.At(B8)==(BLACK|KNIGHT));
+    assert(board.At(C8)==(BLACK|BISHOP));
+    assert(board.At(D8)==(BLACK|QUEEN));
+    assert(board.At(E8)==(BLACK|KING));
+    assert(board.At(F8)==(BLACK|BISHOP));
+    assert(board.At(G8)==(BLACK|KNIGHT));
+    assert(board.At(H8)==(BLACK|ROOK));
+    assert(board.At(A7)==(BLACK|PAWN));
+    assert(board.At(B7)==(BLACK|PAWN));
+    assert(board.At(C7)==(BLACK|PAWN));
+    assert(board.At(D7)==(BLACK|PAWN));
+    assert(board.At(E7)==(BLACK|PAWN));
+    assert(board.At(F7)==(BLACK|PAWN));
+    assert(board.At(G7)==(BLACK|PAWN));
+    assert(board.At(H7)==(BLACK|PAWN));
 
     int count;
 
@@ -333,22 +333,22 @@ void UnitTest::fen_load_3()
 
     assert(board.SanityCheck());
 
-    assert(board.At(A1)==WHITE|ROOK);
-    assert(board.At(B1)==WHITE|KNIGHT);
-    assert(board.At(C1)==WHITE|BISHOP);
-    assert(board.At(D1)==WHITE|QUEEN);
-    assert(board.At(E1)==WHITE|KING);
-    assert(board.At(F1)==WHITE|BISHOP);
-    assert(board.At(G1)==WHITE|KNIGHT);
-    assert(board.At(H1)==WHITE|ROOK);
-    assert(board.At(A2)==WHITE|ROOK);
-    assert(board.At(B2)==WHITE|PAWN);
-    assert(board.At(C2)==WHITE|PAWN);
-    assert(board.At(D2)==WHITE|PAWN);
+    assert(board.At(A1)==(WHITE|ROOK));
+    assert(board.At(B1)==(WHITE|KNIGHT));
+    assert(board.At(C1)==(WHITE|BISHOP));
+    assert(board.At(D1)==(WHITE|QUEEN));
+    assert(board.At(E1)==(WHITE|KING));
+    assert(board.At(F1)==(WHITE|BISHOP));
+    assert(board.At(G1)==(WHITE|KNIGHT));
+    assert(board.At(H1)==(WHITE|ROOK));
+    assert(board.At(A2)==(WHITE|PAWN));
+    assert(board.At(B2)==(WHITE|PAWN));
+    assert(board.At(C2)==(WHITE|PAWN));
+    assert(board.At(D2)==(WHITE|PAWN));
     assert(board.At(E2)==EMPTY);
-    assert(board.At(F2)==WHITE|PAWN);
-    assert(board.At(G2)==WHITE|PAWN);
-    assert(board.At(H2)==WHITE|PAWN);
+    assert(board.At(F2)==(WHITE|PAWN));
+    assert(board.At(G2)==(WHITE|PAWN));
+    assert(board.At(H2)==(WHITE|PAWN));
 
     assert(board.At(A3)==EMPTY);
     assert(board.At(B3)==EMPTY);
@@ -363,14 +363,14 @@ void UnitTest::fen_load_3()
     assert(board.At(B4)==EMPTY);
     assert(board.At(C4)==EMPTY);
     assert(board.At(D4)==EMPTY);
-    assert(board.At(E4)==WHITE|PAWN);
+    assert(board.At(E4)==(WHITE|PAWN));
     assert(board.At(F4)==EMPTY);
     assert(board.At(G4)==EMPTY);
     assert(board.At(H4)==EMPTY);
 
     assert(board.At(A5)==EMPTY);
     assert(board.At(B5)==EMPTY);
-    assert(board.At(C5)==BLACK|PAWN);
+    assert(board.At(C5)==(BLACK|PAWN));
     assert(board.At(D5)==EMPTY);
     assert(board.At(E5)==EMPTY);
     assert(board.At(F5)==EMPTY);
@@ -386,22 +386,22 @@ void UnitTest::fen_load_3()
     assert(board.At(G6)==EMPTY);
     assert(board.At(H6)==EMPTY);
 
-    assert(board.At(A8)==BLACK|ROOK);
-    assert(board.At(B8)==BLACK|KNIGHT);
-    assert(board.At(C8)==BLACK|BISHOP);
-    assert(board.At(D8)==BLACK|QUEEN);
-    assert(board.At(E8)==BLACK|KING);
-    assert(board.At(F8)==BLACK|BISHOP);
-    assert(board.At(G8)==BLACK|KNIGHT);
-    assert(board.At(H8)==BLACK|ROOK);
-    assert(board.At(A7)==BLACK|ROOK);
-    assert(board.At(B7)==BLACK|PAWN);
+    assert(board.At(A8)==(BLACK|ROOK));
+    assert(board.At(B8)==(BLACK|KNIGHT));
+    assert(board.At(C8)==(BLACK|BISHOP));
+    assert(board.At(D8)==(BLACK|QUEEN));
+    assert(board.At(E8)==(BLACK|KING));
+    assert(board.At(F8)==(BLACK|BISHOP));
+    assert(board.At(G8)==(BLACK|KNIGHT));
+    assert(board.At(H8)==(BLACK|ROOK));
+    assert(board.At(A7)==(BLACK|PAWN));
+    assert(board.At(B7)==(BLACK|PAWN));
     assert(board.At(C7)==EMPTY);
-    assert(board.At(D7)==BLACK|PAWN);
-    assert(board.At(E7)==BLACK|PAWN);
-    assert(board.At(F7)==BLACK|PAWN);
-    assert(board.At(G7)==BLACK|PAWN);
-    assert(board.At(H7)==BLACK|PAWN);
+    assert(board.At(D7)==(BLACK|PAWN));
+    assert(board.At(E7)==(BLACK|PAWN));
+    assert(board.At(F7)==(BLACK|PAWN));
+    assert(board.At(G7)==(BLACK|PAWN));
+    assert(board.At(H7)==(BLACK|PAWN));
 
     int count;
 
@@ -478,6 +478,8 @@ void UnitTest::fen_load_3()
 void UnitTest::check_empty()
 {
     OX88Board board;
+
+    board.SanityCheck();
 
     assert(board.At(A1)==EMPTY);
     assert(board.At(A2)==EMPTY);

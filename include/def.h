@@ -3,9 +3,9 @@
 
 #include <inttypes.h>
 
-#define OX88 int8_t
-#define CELL_CONTENT int16_t
-#define FLAGS int8_t
+#define OX88 uint8_t
+#define CELL_CONTENT uint16_t
+#define FLAGS uint8_t
 
 
 /*
