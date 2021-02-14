@@ -25,6 +25,7 @@ void UnitTest::Run()
     fen_load_3();
     fen_load_4();
     fen_load_5();
+    fen_output_1();
 
     auto end = std::chrono::steady_clock::now();
 
@@ -573,5 +574,15 @@ void UnitTest::check_empty()
     assert(board.At(H5)==EMPTY);
     assert(board.At(H6)==EMPTY);
     assert(board.At(H7)==EMPTY);
+
+}
+
+void UnitTest::fen_output_1()
+{
+    OX88Board board;
+    std::string fen="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+    board.LoadFen(fen);
+    std::string out = board.Fen();
+    assert(fen==out);
 
 }

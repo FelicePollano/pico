@@ -16,6 +16,7 @@ class UnitTest
         void fen_load_3();
         void fen_load_4();
         void fen_load_5();
+        void fen_output_1();
         void check_empty();
 };
 

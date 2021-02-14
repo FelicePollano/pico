@@ -30,6 +30,98 @@ OX88Board::~OX88Board()
 std::string OX88Board::Fen()
 {
     std::stringstream stream("");
+    int bcount=0;
+    for(int rank=7;rank>=0;rank--)
+    {
+        for(int file=0;file<8;file++)
+        {
+            auto p = At(TO_OX88(rank,file));
+            if(p!=EMPTY && bcount)
+            {
+                stream.put(0x30+bcount);
+                bcount = 0;
+            }
+            switch(p)
+            {
+            case WHITE|PAWN:
+                stream<<"P";
+                break;
+            case BLACK|PAWN:
+                stream<<"p";
+                break;
+             case WHITE|KNIGHT:
+                stream<<"N";
+                break;
+            case BLACK|KNIGHT:
+                stream<<"n";
+                break;
+            case WHITE|BISHOP:
+                stream<<"B";
+                break;
+            case BLACK|BISHOP:
+                stream<<"b";
+                break;
+            case WHITE|ROOK:
+                stream<<"R";
+                break;
+            case BLACK|ROOK:
+                stream<<"r";
+                break;
+            case WHITE|QUEEN:
+                stream<<"Q";
+                break;
+            case BLACK|QUEEN:
+                stream<<"q";
+                break;
+             case WHITE|KING:
+                stream<<"K";
+                break;
+            case BLACK|KING:
+                stream<<"k";
+                break;
+            default:
+                bcount++;
+            }
+        }
+        if(bcount)
+        {
+            stream.put(0x30+bcount);
+            bcount = 0;
+        }
+        if( rank>0 )
+            stream<<"/";
+    }
+    stream<<" ";
+    // --side to move
+    if(tomove==WHITE)
+        stream<<"w";
+    else
+        stream<<"b";
+    stream<<" ";
+    // --castling ability
+    if( castling_ability == 0)
+        stream<<"-";
+    else
+    {
+        if(castling_ability&W_CAN_CASTLE_SHORT)
+            stream<<"K";
+        if(castling_ability&W_CAN_CASTLE_LONG)
+            stream<<"Q";
+
+        if(castling_ability&B_CAN_CASTLE_SHORT)
+            stream<<"k";
+        if(castling_ability&B_CAN_CASTLE_LONG)
+            stream<<"q";
+    }
+    stream<<" ";
+    // --en passant square
+    stream <<"-";
+    stream<<" ";
+    // --half move clock
+    stream<<half_move_clock;
+    stream<<" ";
+    // --full move count
+    stream<<full_move_count;
     return stream.str();
 }
 
