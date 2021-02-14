@@ -1,5 +1,6 @@
 #include "OX88Board.h"
 #include <memory.h>
+#include <sstream>
 
 OX88Board::OX88Board()
 {
@@ -22,8 +23,20 @@ OX88Board::~OX88Board()
 }
 
 /*
+    Obtain the FEN string representing current board.
+    FEN (Forsyth–Edwards Notation)  string is defined (for instance ) here: https://www.chessprogramming.org/Forsyth-Edwards_Notation
+*/
+
+std::string OX88Board::Fen()
+{
+    std::stringstream stream("");
+    return stream.str();
+}
+
+
+/*
     Initialize the board starting from a FEN string.
-    FEN (Forsyth–Edwards Notation)  string defined (for instance ) here: https://www.chessprogramming.org/Forsyth-Edwards_Notation
+    FEN (Forsyth–Edwards Notation)  string is defined (for instance ) here: https://www.chessprogramming.org/Forsyth-Edwards_Notation
 */
 
 void OX88Board::LoadFen(std::string fen)
@@ -39,7 +52,7 @@ void OX88Board::LoadFen(std::string fen)
     int rank = 7;//start with last rank
     int file=0;
     int topic = 0;
-    for( auto i=fen.begin();i!=fen.end();++i)
+    for( auto i=fen.begin();i!=fen.end();i++)
     {
         if(*i==' ') // next chunk
         {
@@ -66,6 +79,7 @@ void OX88Board::LoadFen(std::string fen)
            if(str.empty())
                 throw "Invalid fen: full moves count not valid";
            full_move_count=std::stoi(str);
+           break;
         }
         if(topic==HALF_MOVE_CLOCK)
         {

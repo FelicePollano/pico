@@ -10,9 +10,11 @@ class OX88Board
         OX88Board();
         virtual ~OX88Board();
         void LoadFen(std::string fen);
+        std::string Fen();
         bool SanityCheck();
         FLAGS At(OX88 where);
         OX88 IndexAt(OX88 where);
+        FLAGS ToMove(){ return tomove;}
         void Clear();
         OX88 WhiteKing(){ return w_king; }
         OX88 EpSquare(){ return ep_square; }

@@ -23,6 +23,8 @@ void UnitTest::Run()
     fen_load_1();
     fen_load_2();
     fen_load_3();
+    fen_load_4();
+    fen_load_5();
 
     auto end = std::chrono::steady_clock::now();
 
@@ -185,6 +187,8 @@ void UnitTest::fen_load_2()
 
     assert(board.SanityCheck());
 
+    assert(board.ToMove() == BLACK);
+
     assert(board.At(A1)==(WHITE|ROOK));
     assert(board.At(B1)==(WHITE|KNIGHT));
     assert(board.At(C1)==(WHITE|BISHOP));
@@ -333,6 +337,8 @@ void UnitTest::fen_load_3()
 
     assert(board.SanityCheck());
 
+    assert(board.ToMove() == WHITE);
+
     assert(board.At(A1)==(WHITE|ROOK));
     assert(board.At(B1)==(WHITE|KNIGHT));
     assert(board.At(C1)==(WHITE|BISHOP));
@@ -474,6 +480,29 @@ void UnitTest::fen_load_3()
 
 }
 
+void UnitTest::fen_load_4()
+{
+    OX88Board board;
+    board.LoadFen("4k3/8/8/8/8/8/4P3/4K3 w - - 5 39");
+
+    assert(board.SanityCheck());
+    assert(board.FullMoveCount()==39);
+    assert(board.HalfMoveClock()==5);
+    assert(board.ToMove() == WHITE);
+    assert(board.CastlingAvailability()==0);
+}
+
+void UnitTest::fen_load_5()
+{
+    OX88Board board;
+    board.LoadFen("4k3/8/8/8/8/8/4P3/4K3 w - - 12 39");
+
+    assert(board.SanityCheck());
+    assert(board.FullMoveCount()==39);
+    assert(board.HalfMoveClock()==12);
+    assert(board.ToMove() == WHITE);
+    assert(board.CastlingAvailability()==0);
+}
 
 void UnitTest::check_empty()
 {
