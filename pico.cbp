@@ -45,8 +45,8 @@
 		<Unit filename="include/OX88Board.h" />
 		<Unit filename="include/def.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/FenTest.cpp" />
 		<Unit filename="src/OX88Board.cpp" />
-		<Unit filename="src/UnitTest.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
