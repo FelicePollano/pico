@@ -17,9 +17,6 @@
 					<Add option="-g" />
 					<Add directory="include" />
 				</Compiler>
-				<Linker>
-					<Add option="-fsanitize=address" />
-				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/pico" prefix_auto="1" extension_auto="1" />
@@ -39,10 +36,13 @@
 		<Compiler>
 			<Add option="-std=c++17" />
 			<Add option="-g" />
-			<Add option="-fexceptions" />
 		</Compiler>
+		<Linker>
+			<Add option="-pthread" />
+			<Add library="/usr/local/lib/libgtest.a" />
+			<Add library="/usr/local/lib/libgtest_main.a" />
+		</Linker>
 		<Unit filename="include/OX88Board.h" />
-		<Unit filename="include/UnitTest.h" />
 		<Unit filename="include/def.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/OX88Board.cpp" />
