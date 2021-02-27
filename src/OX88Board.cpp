@@ -139,7 +139,27 @@ std::string OX88Board::Fen()
     stream<<full_move_count;
     return stream.str();
 }
+/*
+* performs a move specified in internal format
+* no validity check but programmatical ones ( ie someting to move in the location from exists )
+* are done here. We expect game rules applied before coming at this point
+*/
+void OX88Board::Move(MOVE)
+{
 
+}
+/*
+* this undo the move, keeping the board in the exact previous state
+*/
+void OX88Board::UnMove()
+{
+
+}
+
+MOVE OX88Board::FromAlgebraic(std::string move)
+{
+
+}
 
 /*
     Initialize the board starting from a FEN string.
