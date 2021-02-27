@@ -11,6 +11,7 @@ class OX88Board
         virtual ~OX88Board();
         void Move(MOVE m);
         void UnMove();
+        MOVE FromAlgebraic(std::string move);
         void LoadFen(std::string fen);
         std::string Fen();
         bool SanityCheck();
