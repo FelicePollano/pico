@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Option projectCompilerOptionsRelation="0" />
 				<Compiler>
+					<Add option="-std=c++17" />
 					<Add option="-g" />
 					<Add directory="include" />
 				</Compiler>
@@ -27,6 +28,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-std=c++17" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
@@ -35,6 +37,7 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++17" />
 			<Add option="-g" />
 			<Add option="-fexceptions" />
 		</Compiler>
