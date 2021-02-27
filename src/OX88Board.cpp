@@ -1,6 +1,7 @@
 #include "OX88Board.h"
 #include <memory.h>
 #include <sstream>
+#include <regex>
 
 OX88Board::OX88Board()
 {
@@ -155,10 +156,24 @@ void OX88Board::UnMove()
 {
 
 }
-
+/*
+* convert a move from various algebraic notations to a move in
+* internal format.
+*/
 MOVE OX88Board::FromAlgebraic(std::string move)
 {
-
+    //long algebraic notation
+    if(std::regex_match(move,std::regex("[abcdefgh][12345678][abcdefgh][12345678]")))
+    {
+        MOVE res = 0;
+        res = TO_OX88(move[1]-49,move[0]-97);
+        res |= (TO_OX88(move[3]-49,move[2]-97)<<8);
+        return res;
+    }
+    else
+    {
+        throw "not supported move format (yet)";
+    }
 }
 
 /*
