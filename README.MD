@@ -4,8 +4,8 @@ As well as having experience in th elanguage, I had experience in chess engines 
 I think that could be useful to someone, and to this project as well, so I share a [link to it](https://github.com/FelicePollano/Felpo-II).
 
 ## Applying lessons from previous mistakes
-Study all the theory before is absolutely an advantage. In previous engine I started without knowing what [FEN](https://www.chessprogramming.org/Forsyth-Edwards_Notation) was, and the difference between [Long Algebraic Notation \(LAN\)](https://www.chessprogramming.org/Algebraic_Chess_Notation#Long_Algebraic_Notation_.28LAN.29) and [standard one](https://www.chessprogramming.org/Algebraic_Chess_Notation#Standard_Algebraic_Notation_.28SAN.29)
-knowledge of these tools helps in producing good code, doing the right research, and implementing the function you need in the **order** you need.
+Study all the theory before is absolutely an advantage. In previous engine I started without knowing what [FEN](https://www.chessprogramming.org/Forsyth-Edwards_Notation) was, and the difference between [Long Algebraic Notation \(LAN\)](https://www.chessprogramming.org/Algebraic_Chess_Notation#Long_Algebraic_Notation_.28LAN.29) and [standard one](https://www.chessprogramming.org/Algebraic_Chess_Notation#Standard_Algebraic_Notation_.28SAN.29).
+Knowledge of these tools helps in producing good code, doing the right research, and implementing the function you need in the **order** you need.
 With the right toolset, you can easily create an engine that is automatically testable from day 0.
 
 ## Unit testing
