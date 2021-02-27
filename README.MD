@@ -12,8 +12,8 @@ With the right toolset, you can easily create an engine that is automatically te
 If you have some doubt on unit testing usefulness, writing a chess engine will show you why they are necessary. I think in chess engine programming unit testing was invented ages before normal people start to talk about these in that term, surely before Martin Fowler starts to write software, since first computer chess engine were created in the 70, and you cant just deal with a manual test in crafting a computer chess software.
 I decided to write PICO in C++, when I started using C++ there was not handy tool for that, but now we have ( actually many ), and I decided to go with [gtest](https://github.com/google/googletest).
 Very easy to install and get it up and running ( and that's good because one reason I hate C++ in the past was the pain of integrating someonelse code).
-Just for share, starting with gtest is quite easy.
-Just clone the repository, and then, in that folder, run:
+Just for share, starting with gtest is quite easy:
+start by cloning the repository, and then, in that folder, run:
 ```bash
 cmake CMakeLists.txt
 sudo make install
