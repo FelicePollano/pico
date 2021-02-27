@@ -2,6 +2,7 @@
 #include <memory.h>
 #include <sstream>
 #include <regex>
+#include "def.h"
 
 OX88Board::OX88Board()
 {
@@ -12,7 +13,7 @@ void OX88Board::Clear()
 {
     memset(board,0,128*sizeof(CELL_CONTENT));
     castling_ability=0;
-    ep_square =0;
+    ep_square.push(0);
     tomove=WHITE;
     full_move_count=1;
     half_move_clock=0;
@@ -128,10 +129,10 @@ std::string OX88Board::Fen()
     }
     stream<<" ";
     // --en passant square
-    if(ep_square == 0)
+    if(ep_square.top() == 0)
         stream <<"-";
     else
-        stream<<CellName(ep_square);
+        stream<<CellName(ep_square.top());
     stream<<" ";
     // --half move clock
     stream<<half_move_clock;
@@ -142,19 +143,76 @@ std::string OX88Board::Fen()
 }
 /*
 * performs a move specified in internal format
-* no validity check but programmatical ones ( ie someting to move in the location from exists )
+* no validity check but programmatically ones ( ie something to move in the location from exists )
 * are done here. We expect game rules applied before coming at this point
 */
-void OX88Board::Move(MOVE)
+void OX88Board::Move(MOVE m)
 {
+
+    auto start = FROM(m);
+    auto end   = TO(m);
+    auto part = (board[start]);
+    auto index = INDEX(board[start]); //where the part is in his own array?
+    switch(PART_ONLY(part))
+    {
+    case PAWN:
+
+        if(RANK_OF(start)==1 && tomove==WHITE && RANK_OF(end)==3 || RANK_OF(start)==6 && RANK_OF(end)==4 && tomove==BLACK )
+        {
+            if(tomove==WHITE)
+                ep_square.push(TO_OX88(RANK_OF(start)+1,FILE_OF(start)));
+            else
+                ep_square.push(TO_OX88(RANK_OF(start)-1,FILE_OF(start)));
+        }
+        else
+        {
+            ep_square.push(0);
+        }
+        if(tomove==WHITE)
+            w_pawns[index]=end;
+        else
+            b_pawns[index]=end;
+        break;
+    }
+    board[start]=0; //remove original piece
+    board[end]=part|TO_INDEX(index); //piece goes in new location
+    if(tomove==WHITE)
+        tomove=BLACK;
+    else
+    {
+        tomove=WHITE;
+        full_move_count++;
+    }
 
 }
 /*
 * this undo the move, keeping the board in the exact previous state
 */
-void OX88Board::UnMove()
+void OX88Board::UnMove(MOVE m)
 {
-
+    ep_square.pop();
+    auto start = TO(m);
+    auto end   = FROM(m);
+    auto part = PART(board[start]);
+    auto index = INDEX(board[start]); //where the part is in his own array?
+    switch(PART_ONLY(part))
+    {
+        case PAWN:
+            if(tomove==BLACK)
+                w_pawns[index]=end;
+            else
+                b_pawns[index]=end;
+            break;
+    }
+    board[start]=0; //remove original piece
+    board[end]=part|TO_INDEX(index); //piece goes in new location
+    if(tomove==WHITE)
+    {
+        tomove=BLACK;
+        full_move_count--;
+    }
+    else
+        tomove=WHITE;
 }
 /*
 * convert a move from various algebraic notations to a move in
@@ -174,6 +232,13 @@ MOVE OX88Board::FromAlgebraic(std::string move)
     {
         throw "not supported move format (yet)";
     }
+}
+/*
+* load the board with the default position
+*/
+void OX88Board::Init()
+{
+    LoadFen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 }
 
 /*
@@ -251,7 +316,7 @@ void OX88Board::LoadFen(std::string fen)
                         error = true;
                     else
                     {
-                        ep_square=TO_OX88(rank,file);
+                        ep_square.push(TO_OX88(rank,file));
                     }
             }
             if(error)

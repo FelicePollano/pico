@@ -14,7 +14,10 @@
    PART IS THE UPPER BYTE AND REVERSE INDEX THE LOWER
 */
 
+//part with color
 #define PART(x) (((x))&0xFF)
+//part without color
+#define PART_ONLY(x) (((x))&0xFC)
 #define INDEX(x) (((x))>>8)
 #define TO_INDEX(x) (((x))<<8)
 

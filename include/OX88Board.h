@@ -4,13 +4,17 @@
 #include "def.h"
 #include <vector>
 #include <string>
+#include <stack>
+
 class OX88Board
 {
     public:
         OX88Board();
+        void Init();
+
         virtual ~OX88Board();
         void Move(MOVE m);
-        void UnMove();
+        void UnMove(MOVE m);
         static MOVE FromAlgebraic(std::string move);
         void LoadFen(std::string fen);
         std::string Fen();
@@ -21,7 +25,7 @@ class OX88Board
         void Clear();
         std::string CellName(OX88 square);
         OX88 WhiteKing(){ return w_king; }
-        OX88 EpSquare(){ return ep_square; }
+        OX88 EpSquare(){ return ep_square.top(); }
         OX88 BlackKing(){ return b_king; }
         int HalfMoveClock(){ return half_move_clock; }
         int FullMoveCount(){ return full_move_count; }
@@ -56,7 +60,7 @@ class OX88Board
         OX88 b_king;
         FLAGS castling_ability;
         FLAGS tomove;
-        OX88 ep_square;
+        std::stack<OX88> ep_square;
         int half_move_clock;
         int full_move_count;
 };

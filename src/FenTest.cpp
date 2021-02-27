@@ -5,7 +5,12 @@
 #include <chrono>
 
 #include <gtest/gtest.h>
-
+TEST (FenTest,init_loads_start_position)
+{
+    OX88Board board;
+    board.Init();
+    EXPECT_EQ(board.Fen(),"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+}
 TEST (FenTest,fen_load_1)
 {
     OX88Board board;
