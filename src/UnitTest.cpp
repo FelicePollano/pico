@@ -1,41 +1,12 @@
-#include "UnitTest.h"
+
 #include "OX88Board.h"
 #include <assert.h>
 #include <iostream>
 #include <chrono>
 
+#include <gtest/gtest.h>
 
-UnitTest::UnitTest()
-{
-
-}
-
-UnitTest::~UnitTest()
-{
-
-}
-
-void UnitTest::Run()
-{
-    auto start = std::chrono::steady_clock::now();
-
-    check_empty();
-    fen_load_1();
-    fen_load_2();
-    fen_load_3();
-    fen_load_4();
-    fen_load_5();
-    fen_output_1();
-    fen_output_2();
-    fen_output_3();
-    fen_output_4();
-
-    auto end = std::chrono::steady_clock::now();
-
-    std::cout<<"test done. " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-    std::cout<<" ms.\n";
-}
-void UnitTest::fen_load_1()
+TEST (BoardTest,fen_load_1)
 {
     OX88Board board;
     board.LoadFen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -184,7 +155,7 @@ void UnitTest::fen_load_1()
 
 }
 
-void UnitTest::fen_load_2()
+TEST (BoardTest,fen_load_2)
 {
     OX88Board board;
     board.LoadFen("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1");
@@ -334,7 +305,7 @@ void UnitTest::fen_load_2()
 
 }
 
-void UnitTest::fen_load_3()
+TEST(BoardTest,fen_load_3)
 {
     OX88Board board;
     board.LoadFen("rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2");
@@ -484,7 +455,7 @@ void UnitTest::fen_load_3()
 
 }
 
-void UnitTest::fen_load_4()
+TEST( BoardTest,fen_load_4)
 {
     OX88Board board;
     board.LoadFen("4k3/8/8/8/8/8/4P3/4K3 w - - 5 39");
@@ -496,7 +467,7 @@ void UnitTest::fen_load_4()
     assert(board.CastlingAvailability()==0);
 }
 
-void UnitTest::fen_load_5()
+TEST( BoardTest,fen_load_5)
 {
     OX88Board board;
     board.LoadFen("4k3/8/8/8/8/8/4P3/4K3 w - - 12 39");
@@ -508,7 +479,7 @@ void UnitTest::fen_load_5()
     assert(board.CastlingAvailability()==0);
 }
 
-void UnitTest::check_empty()
+TEST( BoardTest,check_empty)
 {
     OX88Board board;
 
@@ -580,7 +551,7 @@ void UnitTest::check_empty()
 
 }
 
-void UnitTest::fen_output_1()
+TEST( BoardTest,fen_output_1)
 {
     OX88Board board;
     std::string fen="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
@@ -589,7 +560,7 @@ void UnitTest::fen_output_1()
     assert(fen==out);
 
 }
-void UnitTest::fen_output_2()
+TEST( BoardTest,fen_output_2)
 {
     OX88Board board;
     std::string fen="rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2";
@@ -598,7 +569,7 @@ void UnitTest::fen_output_2()
     assert(fen==out);
 
 }
-void UnitTest::fen_output_3()
+TEST( BoardTest,fen_output_3)
 {
     OX88Board board;
     std::string fen="4k3/8/8/8/8/8/4P3/4K3 w - - 12 39";
@@ -606,7 +577,7 @@ void UnitTest::fen_output_3()
     std::string out = board.Fen();
     assert(fen==out);
 }
-void UnitTest::fen_output_4()
+TEST( BoardTest,fen_output_4)
 {
     OX88Board board;
     std::string fen="rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";

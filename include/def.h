@@ -22,6 +22,12 @@
 #define FILE_OF(x) (((x))&7)
 #define RANK_OF(x) (((x))>>4)
 
+#define MOVE uint32_t
+#define FROM(x) (((x))&0xFF)
+#define TO(x) (((x))>>8&0xFF)
+
+
+
 
 
 #define EMPTY 0

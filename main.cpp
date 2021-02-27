@@ -1,6 +1,6 @@
 #include <iostream>
 #include "OX88Board.h"
-#include "UnitTest.h"
+#include <gtest/gtest.h>
 using namespace std;
 
 int main()
@@ -15,8 +15,8 @@ int main()
         }
         else if(arg=="test")
         {
-            UnitTest ut;
-            ut.Run();
+            ::testing::InitGoogleTest();
+            return RUN_ALL_TESTS();
         }
         else
         {

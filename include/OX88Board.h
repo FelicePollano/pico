@@ -9,6 +9,8 @@ class OX88Board
     public:
         OX88Board();
         virtual ~OX88Board();
+        void Move(MOVE m);
+        void UnMove();
         void LoadFen(std::string fen);
         std::string Fen();
         bool SanityCheck();
